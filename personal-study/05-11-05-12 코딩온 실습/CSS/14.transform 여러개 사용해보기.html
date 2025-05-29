@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>transform 함수 여러개 사용</title>
+<style>
+  .box {
+    background-color: skyblue;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    transition: 1s;
+    box-sizing: border-box;
+  }
+
+  .container1:hover {
+    transform: translateX(50px) scaleX(2);
+    width: 200px
+  }
+
+  .container2:hover {
+    transform: translateX(50%) skewX(-45deg);
+  }
+
+  .container3:hover {
+    border-radius: 50%;
+    background-color: red;
+    transform: translate(300px) rotate(180deg);
+  }
+
+  .container4:hover {
+    transform: translateY(50px) perspective(200px) rotateX(360deg) scale(2);
+    background-color: yellow;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg);}
+    to   { transform: rotate(360deg);}
+  }
+</style>
+    <div class="box container1"></div>
+    <div class="box container2"></div>
+    <div class="box container3"></div>
+    <div class="box container4"></div>
+  </div>
+</div>

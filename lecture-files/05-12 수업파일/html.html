@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>구글 폼 클론 - 사용자 설문지</title>
+<link rel="stylesheet" href="/css.css">
+<style>
+  * {
+    background-color: #e8ecea;
+  }
+
+    body {
+    background-color: #white;
+    padding: 10px; 
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  p {
+    color: rgb(195, 189, 189);
+    background: inherit;
+    font-weight: bold;
+  }
+  
+  div {
+    background-color: rgb(255, 255, 255);
+    width: 480px;
+    height: 750px;
+    margin: 0 auto; /* ✅ div 자체는 화면 중앙 */
+    text-align: left; /* ✅ 안의 내용은 왼쪽 정렬 */
+    padding-left: 10px;
+  }
+    
+  button {
+    background-color: #9bc599;
+    width: 450px;
+    height: 45px;
+    border: none;
+    border-radius: 13px;
+    margin-bottom: 10px;
+    display: block;
+    margin: 10px auto;
+  }
+
+  label {
+  font-weight: bold;
+}
+
+label, input, select, option, form {
+  font-size: medium;
+  width: 450px;
+  height: 32px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+label {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+
+input[type="text"], select {
+  font-weight: normal;
+  border: 1px solid gray;
+  outline: none;
+  padding: 5px 10px;
+}
+
+input:not[type="checkbox"] {
+  margin-top: 10px;
+  margin-left: 10px;
+
+}
+
+</style>
+</head>
+<body>
+  <h1>구글 폼 클론 - 사용자 설문지</h1>
+  <div>
+  <br>
+  <label for="username">이름:</label><br><br>
+  <input type="text" id="username" placeholder="이름을 입력하세요."><br><br>
+  <br>
+  <label for="useremail">이메일:</label><br>
+  <br>
+  <input type="text" id="useremail" placeholder="1234@gmail.com"><br><br>
+  <br>
+  <label for="usernumber">전화번호:</label><br><br>
+  <input type="text" id="usertel" placeholder="010-0000-0000"><br><br>
+  <br>
+
+  <form action="">
+    <label for="user">성별:</label><br><br>
+    <select name="user">
+      <option value="남자"> 남자
+      <option value="여자"> 여자 </select> </form> <br>
+  <br>
+  <br>
+    <label for="agree">이용 약관에 동의:</label><br><br>
+    <br>
+    <input type="checkbox" id="agree" required>
+    <br>
+    <button onclick="showInfo()">클릭하기</button>
+    <button type="button">추가 질문 추가</button>
+  </div>
+
+<script>
+  function showInfo() {
+    const name = document.getElementById("username").value;
+    const email = document.getElementById("useremail").value;
+    const tel = document.getElementById("usertel").value;
+
+    if (!name) {
+      alert("이름 입력을 안함")
+      return
+    } 
+    
+    alert(`이름: ${name}\n이메일: ${email}\n전화번호: ${tel}`);
+    
+    console.log("이름:", name);
+    console.log("이메일:", email);
+    console.log("전화번호:", tel);
+
+  }
+</script>
+</body>
+</html>

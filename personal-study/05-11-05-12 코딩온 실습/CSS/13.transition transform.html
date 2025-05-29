@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+<style>
+  .img {
+    position: absolute;
+    cursor: pointer;
+    width: 300px;
+    height: 200px;
+  }
+
+  .container {
+    width: 1500px;
+    height: 1000px;
+    background-color: #e7e7e7;
+    position: relative;
+  }
+
+  .img {
+    position: absolute;
+    transform: skewY(30deg);
+    transition: 1s;
+    cursor: pointer;
+  }
+
+  .img:hover {
+    transform: skew(0);
+  }
+
+  .sea1 {
+    top: 180px;
+    left: 200px;
+    z-index: 3;
+  }
+
+  .sea2 {
+    top: 150px;
+    left: 350px;
+    z-index: 2;
+  }
+
+  .sea2:hover {
+    z-index: 3;
+  }
+
+  .sea3 {
+    top: 120px;
+    left: 500px;
+  }
+
+  .sea3:hover {
+    z-index: 3;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="img sea1">
+      <img src="sea1.jpg" width="500" height="300" alt="sea"> 
+    </div>
+  <div class="container2">
+    <div class="img sea2">
+      <img src="sea2.jpg" width="500" height="300" alt="sea">
+    </div>
+  <div class="container3">
+    <div class="img sea3">
+      <img src="sea3.jpg" width="500" height="300" alt="sea">
+    </div>
+  </div>
+</body>
+</html>

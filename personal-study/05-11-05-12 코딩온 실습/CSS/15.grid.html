@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GRID 실습문제 - 1번 풀이</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        display: grid;
+        background-color: aliceblue;
+        width: 100%;
+        height: 100vh;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+      }
+      .item {
+        font-family: 'SUITE-Regular';
+        font-size: 1.4rem;
+        font-weight: 700;
+
+        /* 글씨 가운데 정렬도 flex로 처리 가능 */
+        /* 글씨 중앙 정렬 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .item1 {
+        background-color: #f94144;
+        grid-column: auto / span 6;
+      }
+      .item2 {
+        background-color: #f3722c;
+        grid-row: 2/4;
+      }
+      .item3 {
+        background-color: #f9c74f;
+        grid-column: 2/6;
+      }
+      .item4 {
+        background-color: #43aa8b;
+        grid-row: auto / span 2;
+      }
+      .item5 {
+        background-color: #f8961e;
+        grid-column: 2/4;
+      }
+      .item6 {
+        background-color: #90be6d;
+        grid-column: 4/6;
+      }
+      .item7 {
+        background-color: #4444ff;
+        color: white;
+        grid-column: 1/7;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item item1">#F94144</div>
+      <div class="item item2">#F3722C</div>
+      <div class="item item3">#F9C74F</div>
+      <div class="item item4">#43AA8B</div>
+      <div class="item item5">#F8961E</div>
+      <div class="item item6">#90BE6D</div>
+      <div class="item item7">#4444FF</div>
+    </div>
+  </body>
+</html>
