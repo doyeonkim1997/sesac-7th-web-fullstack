@@ -1,6 +1,6 @@
 let color = "purple";
 
-let city = 'Tokyo';
+let city = 'Tokyo'; 
 
 city.length; //5
 
