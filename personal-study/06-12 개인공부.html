@@ -1,0 +1,195 @@
+03. HTML
+
+<div id="main"></div>
+id : 고유한 식별자
+
+<p class="notice"></p>
+class = 그룹화된 스타일, 동작 이름
+
+<a src="image.jpg" href="https://example.com" title="예제 이미지">Example</a>
+src : 이미지, 파일의 경로 지정
+
+<a href="https://example.com" title="예제 주소">Example</a>
+href : 링크의 목적지 주소
+
+<input type="text" name="username" placeholder="사용자 이름 입력">
+type : 인풋의 타입 지정
+
+<input placeholder="이메일 입력하라는 뜻임" type="email" name="email">
+placeholder : 인풋 필드에 표시되는 힌트 표시 텍스트
+
+<div style="display: none;"></div>
+style : 인라인 스타일 지정
+
+<span title="도구 설명">마우스를 올려보세요</span>
+title : 요소에 대한 추가 정보 제공, 마우스 오버 시 표시
+
+<h1>문서의 제목 계층을 나타냄</h1>
+h1 : 가장 중요한 제목, h2, h3 등으로 계층 구조를 나타냄
+(한 페이지에 h1은 1개만 사용 권장)
+
+<p>이것은 문단입니다.</p>
+p : 하나의 문장을 그룹화 할 때 사용, 문단마다 자동 줄바꿈이 발생함
+
+<strong>강조된 텍스트</strong>
+storng : 텍스트 강조, 일반적으로 굵게 표시됨, em: 강조된 '어조' 표현
+
+<span>일반 텍스트</span>
+span : 인라인 요소로, 별 뜻은 없으나 스타일이나 클래스 적용할 때 사용
+
+<br>
+br : 줄바꿈, 문단을 나누지 않고 줄바꿈만 하고 싶을 때 사용
+
+<ul>
+  <li>목록 항목 1</li>
+  <li>목록 항목 2</li>
+</ul>
+ul : 순서 없는 목록, li: 목록 항목
+
+<ol>
+  <li>순서 있는 목록 항목 1</li>
+  <li>순서 있는 목록 항목 2</li>
+</ol>
+ol : 순서가 있는 목록, li: 목록 항목(반드시 ul 혹은 ol 안에서만 사용해야 함)
+
+<a href="https://example.com" target="_blank">새 탭에서 열기</a>
+a : 하이퍼링크 태그, href : 링크 주소, target="_blank": 새 탭에서 열기
+
+<img src="image.jpg" alt="이미지 설명" width="300" height="200">
+img : 이미지 삽입 태그, src: 이미지 경로, alt: 이미지 설명(스크린 리더,대체 텍스트), width/height: 크기 지정
+
+<form action="submit.php" method="post"></form>
+form : 사용자 입력을 받는 폼, action: 폼 제출 시 처리할 URL, method: HTTP 메소드(POST, GET 등)
+
+input type name : 사용자 입력 필드
+input type value : 입력 필드의 값
+input type placeholder : 입력 필드에 힌트 텍스트 표시(사용자가 글자 쓰기 전 미리 보여지는 텍스트)
+input type id : 입력 필드의 고유 식별자
+input type required : 필수 입력 필드(사용자가 반드시 입력해야 함을 나타냄)
+input type disabled : 비활성화된 입력 필드(사용자가 입력할 수 없음)
+input type readonly : 읽기 전용 입력 필드(사용자가 수정할 수 없지만 값을 볼 수 있음)
+input type maxlength : 입력 필드에 허용되는 최대 글자 수
+input type autocomplete : 자동 완성 기능 활성화(브라우저가 이전 입력값을 기억하여 제안함)
+
+input type text : 일반 텍스트 입력 필드
+input type checkbox : 체크박스 입력 필드(사용자가 선택할 수 있는 옵션)
+input type radio : 라디오 버튼 입력 필드(여러 옵션 중 하나만 선택 가능)
+input type submit : 폼 제출 버튼(사용자가 입력한 데이터를 서버로 전송)
+input type button : 일반 버튼(특정 동작을 수행하도록 설정 가능)
+
+<table>
+  <thead>
+    <tr>
+      <th>헤더 1</th>
+      <th>헤더 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>데이터 1</td>
+      <td>데이터 2</td>
+    </tr>
+    <tr>
+      <td>데이터 3</td>
+      <td>데이터 4</td>
+    </tr>
+  </tbody>
+</table>
+table : 표를 생성하는 태그, thead: 표의 헤더, tbody: 표의 본문, tr: 행(row), th: 헤더 셀, td: 데이터 셀
+
+<td colspan="2"></td>
+colspan : 셀 병합 속성, td: 데이터 셀, colspan="2": 두 개의 열을 병합
+
+<td rowspan="2"></td>
+rowspan : 셀 병합 속성, td: 데이터 셀, rowspan="2": 두 개의 행을 병합
+
+a, strong, span, img 등
+인라인 요소 : 내용만큼만 너비 차지
+
+div, p,, ul, table, form, h1~h6 등
+블록 요소 : 한 줄 전제를 차지하며 줄바꿈 발생
+
+input, button, textarea는 브라우저마다 인라인 혹은 블록으로 취급되므로 스타일링에 따라 유연하게 반응될 수 있음
+
+시맨틱 태그란, 태그 이름만으로 콘텐츠 의미나 역할을 파악할 수 있는 HTML를 말함.
+"이 구역이 어떤 역할을 하는 지" 명확하게 나타내는 태그임.
+
+<header></header>
+header : 페이지나 섹션의 머리말 (로고, 제목, 내비게이션)
+
+<nav></nav>
+nav : 내비게이션 메뉴 (사이트 메뉴, 링크 목록)
+
+<main></main>
+main : 문서의 핵심 콘텐츠 (기사, 본문, 주요 설명)
+
+<section></section>
+section : 주제별 콘텐츠 묶음 (소개, 기능 설명, FAQ)
+
+<article></article>
+article : 독립된 콘텐츠 블록 (블로그 글, 뉴스, 게시글)
+
+<aside></aside>
+aside : 보조 콘텐츠 (광고, 관련 링크, 사이드 위젯)
+
+<footer></footer>
+footer : 페이지나 섹션의 꼬리말 (저작권, 연락처, 하단 메뉴)
+
+---------------------------------------------------------------------------------
+
+
+05. CSS
+
+CSS는 HTML에 작성된 구조에 스타일을 입혀 디자인과 사용자 경험을 향상하기 위해 사용함
+
+<p style="color: red;"></p>
+인라인 선언 방식 : HTML 태그 내부에 style 속성을 직접 작성
+선택자 없이 동작
+유지보수가 어렵고 스타일이 분산되기 쉬움
+
+<head>
+  <style>
+    h1 {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>인터널 예시</h1>
+</body>
+인터널 선언 방식 : style 태그를 사용해 HTML문서 안에서 CSS를 정의
+
+
+익스터널 선언 방식: CSS를 별도의 파일로 분리하여 작성
+<link> 태그를 사용해 HTML 문서에 연결
+
+@임폴트 선언 방식 : CSS 파일 안에서 다른 CSS파일을 불러오는 방식
+주로 외부 스타일을 재사용하거나, CSS 모듈을 나눌 때 사용
+@import 방식은 External보다 늦게 불러옴(성능이 떨어짐)
+
+
+✅ 기본 선택자 (요소를 "무조건" 지정하는 방식)
+
+* : 모든 요소 선택 * { margin: 0; }
+태그 : 특정 태그 선택 p { color: red; }
+.클래스 : 클래스 속성 값이 일치하는 요소 .box { padding: 10px; }
+#아이디 : 아이디가 일치하는 단 하나의 요소 #main { background: blue; }
+
+
+🧩 복합 선택자 (관계를 통해 더 정확히 지정)
+
+A.B : A 태그이면서 클래스 B를 가진 요소 div.alert { color: red; }
+A B : A의 모든 하위 요소 B ul li { list-style: none; }
+A > B : A의 직계 자식 요소 B nav > ul { padding: 0; }
+A + B : A 바로 뒤에 나오는 형제 B 하나 h1 + p { font-size: 14px; }
+A ~ B : A 뒤에 나오는 형제 B 모두 h1 ~ p { color: gray; }
+
+📌 기억 꿀팁
+*: 전체에 한 방에 적용하고 싶을 때
+. vs #: 클래스는 "공통 스타일", 아이디는 "하나만"
+> vs 공백: >는 직계, 공백은 모든 하위
++ vs ~: +는 딱 하나, ~는 전부 (형제들 중 뒤에 있는 것들)
+
+
+가상 클래스 선
