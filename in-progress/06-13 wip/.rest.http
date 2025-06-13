@@ -1,0 +1,53 @@
+###
+POST http://localhost:3000/sign-up
+Content-Type: application/json
+
+{
+  "email": "ab3534442542c@example.com",
+  "password": "a3b123adsef",
+  "nickname": "테스트유저"
+}
+
+###
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "ab3534442542c@example.com",
+  "password": "a3b123adsef",
+  "nickname": "테스트유저"
+}
+
+###
+
+###
+GET http://localhost:3000/posts
+
+###
+GET http://localhost:3000/posts/1
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc0OTgwNTk1NiwiZXhwIjoxNzQ5ODQ5MTU2fQ.Lj77t-2MDn9zK_ebVW5ijnE5fHgpCOIwWqlEdiAitAM
+
+{
+  "title": "새로운 게시글",
+  "content": "게시글 내용입니다."
+}
+
+###
+PUT http://localhost:3000/posts/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc0OTgwNTk1NiwiZXhwIjoxNzQ5ODQ5MTU2fQ.Lj77t-2MDn9zK_ebVW5ijnE5fHgpCOIwWqlEdiAitAM
+
+{
+  "title": "수정된 게시글",
+  "content": "수정된 게시글 내용입니다."
+}
+
+###
+DELETE http://localhost:3000/posts/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTc0OTgwNTk1NiwiZXhwIjoxNzQ5ODQ5MTU2fQ.Lj77t-2MDn9zK_ebVW5ijnE5fHgpCOIwWqlEdiAitAM

@@ -1,0 +1,11 @@
+# node_modules 폴더 제외
+node_modules/
+
+# 환경변수 파일 제외
+.env
+
+# 기타 추천 제외 항목
+.DS_Store
+*.log
+npm-debug.log*
+.vscode/
