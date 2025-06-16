@@ -1,0 +1,83 @@
+### 📌 회원가입
+POST http://localhost:3000/sign-up
+Content-Type: application/json
+
+{
+  "email": "ab352c@example.com",
+  "password": "a3b12sef",
+  "nickname": "테스트유저"
+}
+
+###
+
+### 🔐 로그인 (세션 생성됨)
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "email": "ab352c@example.com",
+  "password": "a3b12sef"
+}
+
+###
+
+### 👤 인증된 사용자 정보 조회 (세션 기반, 쿠키 포함됨)
+GET http://localhost:3000/user
+
+###
+
+### 📃 전체 게시글 조회
+GET http://localhost:3000/posts
+
+###
+
+### 🔍 특정 게시글 조회
+GET http://localhost:3000/posts/1
+
+###
+
+### 📝 게시글 생성 (userId는 직접 body에 넣음)
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "새로운 게시글",
+  "content": "게시글 내용입니다.",
+  "userId": 1
+}
+
+###
+
+### ✏️ 게시글 수정
+PUT http://localhost:3000/posts/10
+Content-Type: application/json
+
+{
+  "title": "수정된 게시글",
+  "content": "수정된 게시글 내용입니다."
+}
+
+###
+
+### ❌ 게시글 삭제
+DELETE http://localhost:3000/posts/10
+
+###
+
+### 🍪 쿠키 설정
+GET http://localhost:3000/cookie
+
+###
+
+### 🍪 전체 쿠키 조회
+GET http://localhost:3000/cookie/all
+
+###
+
+### 🗂️ 세션 증가 수 확인
+GET http://localhost:3000/session/set
+
+###
+
+### 🗂️ 세션 사용자 정보 조회
+GET http://localhost:3000/session/user
