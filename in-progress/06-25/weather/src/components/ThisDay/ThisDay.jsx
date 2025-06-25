@@ -1,5 +1,6 @@
 import React from 'react'
 import { ThisDayWrapper, Top, Bottom } from './styles';
+import CurrentTime from './CurrentTime';
 
 const ThisDay = () => {
   let imageSrc = "./images/weatherIcons/rain.svg";
@@ -14,13 +15,13 @@ const ThisDay = () => {
       </Top>
 
       <Bottom>
-        <div>16:03</div>
+        <CurrentTime />
         <div>
           Seoul - KR
         </div>
       </Bottom>
-    </ThisDayWrapper >
 
+    </ThisDayWrapper >
 
   )
 }
