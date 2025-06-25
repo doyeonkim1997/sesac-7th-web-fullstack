@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    header,
+    footer {
+      background-color: #f8f8f8;
+      padding: 20px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .select {
+      font-size: 16px;
+    }
+
+    hr {
+      margin: 0;
+    }
+
+    main {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    /* 공통 위젯 스타일 */
+    .widget-box {
+      width: 45%;
+      background-color: #f0f0f0;
+      padding: 20px;
+      margin-top: 30px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .sm2-widget {
+      height: 110px;
+    }
+
+    footer {
+      width: 100%;
+      height: 100px;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .footer-content {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 헤더 -->
+  <header>
+    <div class="logo">왼쪽 위 로고</div>
+    <div class="select">오른쪽 위 셀렉트(누르면 하단으로 메뉴 드롭)</div>
+  </header>
+  <hr>
+
+  <!-- 메인 콘텐츠 -->
+  <main>
+    <div class="widget-box">왼쪽에 작은 위젯</div>
+    <div class="widget-box sm2-widget">오른쪽에 작은 위젯</div>
+  </main>
+
+  <!-- 푸터 -->
+  <footer>
+    <div class="footer-content">푸터에는 긴 위젯인데 안에 작은 위젯 6개가 들어감</div>
+  </footer>
+</body>
+
+</html>
