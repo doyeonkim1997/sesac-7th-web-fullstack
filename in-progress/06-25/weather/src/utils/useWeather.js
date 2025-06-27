@@ -1,7 +1,8 @@
 import openWeather from "./openWeather";
 import { useQuery } from "@tanstack/react-query";
 
-export async function getWeather() {
+// ✅ city 매개변수 추가!
+export async function getWeather(city = "Seoul") {
   const weather = await openWeather.getCurrentWeatherByCityName({
     cityName: city,
     countryCode: "KR",
@@ -12,10 +13,7 @@ export async function getWeather() {
 
 const useWeather = (city = "Seoul") => {
   const { data, ...rest } = useQuery({
-    // 캐시 및  refetch 기준 키
     queryKey: ["weather", city],
-
-    // 데이터를 가져오는 비동기 함수
     queryFn: () => getWeather(city),
   });
 
@@ -23,6 +21,6 @@ const useWeather = (city = "Seoul") => {
     ...rest,
     data
   };
-}
+};
 
 export default useWeather;

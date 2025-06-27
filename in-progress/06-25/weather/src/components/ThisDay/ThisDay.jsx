@@ -18,14 +18,18 @@ const ThisDay = () => {
   } else if (weatherIcon === "Clouds") {
     imageSrc = "./images/weatherIcons/few-clouds.svg";
 
+  } else if (weatherIcon === "Atmosphere") {
+    imageSrc = "./images/weatherIcons/mist.svg";
+
   } else if (weatherIcon === "Rain") {
     imageSrc = "./images/weatherIcons/rain.svg";
 
   } else if (weatherIcon === "Snow") {
     imageSrc = "./images/weatherIcons/snow.svg";
+
+  } else if (weatherIcon === "Thunderstorm") {
+    imageSrc = "./images/weatherIcons/thunderstorm.svg";
   }
-
-
 
 
   return (
