@@ -1,21 +1,25 @@
 import styled from "styled-components";
 
+
 export const ThisDayInfoWrapper = styled.div`
   width: 100%;
-  max-width: 450px;
-  min-height: 350px;
-  padding: 30px;
+  max-width: 500px;
+  height: 350px;
+  padding: 25px;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
   border-radius: 25px;
   border: 1px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  gap: 30px;
+  gap: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-    > div {
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  }
+  > div {
     display: grid;
     grid-template-rows: repeat(4, 1fr);
     align-items: center;
@@ -39,7 +43,32 @@ export const ThisDayInfoWrapper = styled.div`
       line-height: 1.4;
     }
   }
-`
+  @media (max-width: 768px) {
+    max-width: 100%;
+    height: fit-content;
+    gap: 15px;
+    padding: 20px;
+    text-align: center;
+    > div {
+      justify-items: center;
+      padding: 5px;
+      gap: 20px;
+      h2 {
+        font-weight: 500;
+        font-size: 16px;
+      }
+    }
+    > div:nth-child(2) {
+      flex: 1;
+    }
+    > div:nth-child(3) {
+      p {
+        font-weight: 400;
+        font-size: 14px;
+      }
+    }
+  }
+`;
 export const ImgWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -53,6 +82,9 @@ export const ImgWrapper = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  &:hover {
+    transform: scale(1.1);
+  }
   img {
     width: 30px;
     height: 30px;

@@ -3,22 +3,22 @@
 import React from 'react'
 import { BottomPart, DayWrapper, TopPart } from './styles'
 
-const Day = () => {
+const Day = ({ day }) => {
   return (
     <DayWrapper>
       <TopPart>
         <div>
-          <h2>wed</h2>
-          <h3>06.25</h3>
+          <h2>{day.name}</h2>
+          <h3>{day.date}</h3>
         </div>
-        <img src="./images/weatherIcons/snow.svg" alt="" />
+        <img src={`./images/weatherIcons/${day.icon}.svg`} alt="" />
       </TopPart>
       <BottomPart>
-        <h2>21 °C</h2>
-        <h3>19 °C</h3>
+        <h2>{day.temp.max} °C</h2>
+        <h3>{day.temp.min} °C</h3>
       </BottomPart>
     </DayWrapper>
   )
 }
 
-export default Day
+export default Day;

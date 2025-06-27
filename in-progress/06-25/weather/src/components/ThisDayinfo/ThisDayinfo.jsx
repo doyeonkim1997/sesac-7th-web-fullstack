@@ -1,66 +1,54 @@
-import React from 'react';
-import { ThisDayInfoWrapper, ImgWrapper } from './styles';
 
-const infoItems = [
-  {
-    icon: './images/temperature.svg',
-    label: 'Temperature',
-    value: '21°C feels like 22°C',
-  },
-  {
-    icon: './images/pressure.svg',
-    label: 'Pressure',
-    value: '1013 hPa',
-  },
-  {
-    icon: './images/humidity.svg',
-    label: 'Humidity',
-    value: '65%',
-  },
-  {
-    icon: './images/wind.svg',
-    label: 'Wind',
-    value: '5.2 m/s',
-  },
+import React from 'react'
+import { ThisDayInfoWrapper, ImgWrapper } from './styles'
+
+import useWeather from '../../utils/useWeather.js';
+
+const nameInfo = ["Temperature", "Pressure", "Humidity", "Wind"];
+const imgInfo = [
+  "./images/temperature.svg",
+  "./images/pressure.svg",
+  "./images/humidity.svg",
+  "./images/wind.svg",
 ];
 
+
 const ThisDayInfo = () => {
+  const { data, isLoading } = useWeather("Seoul");
+  const temp = `${Math.round(data?.main.temp || 0)}°C feels like ${Math.round(
+    data?.main.feels_like || 0
+  )}°C`;
+  const pressureMetric = Math.round((data?.main.pressure || 0) / 1.333);
+  const pressure = `${pressureMetric} mmHg  - ${pressureMetric < 748 ? "low" : pressureMetric > 770 ? "high" : "normal"
+    }`;
+  const humidity = `${data?.main.humidity} %`;
+  const wind = `${Math.round((data?.wind.speed || 0) * 10)} mph`;
+  const dataInfo = [temp, pressure, humidity, wind];
+
   return (
     <ThisDayInfoWrapper>
-      <div className='info-row'>
-        <ImgWrapper>
-          <h2>Temparature</h2>
-          <img src='./images/temperature.svg' alt='Temperature Icon' />
-          <p>21°C feels like 22°C</p>
-        </ImgWrapper>
+      <div>
+        {imgInfo.map((img, index) => (
+          <ImgWrapper key={index}>
+            <img src={img} />
+          </ImgWrapper>
+        ))}
       </div>
+      <div>
+        {
+          nameInfo.map((info, index) => (
+            <h2 key={index}>{info}</h2>
+          ))
+        }
+      </div>
+      <div>
+        {dataInfo.map((info, index) => (
+          <p key={index}>{info}</p>
+        ))}
+      </div>
+    </ThisDayInfoWrapper >
 
-      <div className='info-row'>
-        <ImgWrapper>
-          <h2>Temparature</h2>
-          <img src='./images/temperature.svg' alt='Temperature Icon' />
-          <p>21°C feels like 22°C</p>
-        </ImgWrapper>
-      </div>
-
-      <div className='info-row'>
-        <ImgWrapper>
-          <h2>Temparature</h2>
-          <img src='./images/temperature.svg' alt='Temperature Icon' />
-          <p>21°C feels like 22°C</p>
-        </ImgWrapper>
-      </div>
-
-      <div className='info-row'>
-        <ImgWrapper>
-          <h2>Temparature</h2>
-          <img src='./images/temperature.svg' alt='Temperature Icon' />
-          <p>21°C feels like 22°C</p>
-        </ImgWrapper>
-      </div>
-    </ThisDayInfoWrapper>
   )
-};
+}
 
-
-export default ThisDayInfo;
+export default ThisDayInfo
