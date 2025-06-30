@@ -92,9 +92,7 @@ let objectArr = [
   {name : "콩이두부"},
 ];
 
-console.log(
-  objectArr.indexOf({ name : "김도연"})
-);
+// console.log(objectArr.indexOf({ name : "김도연"}));
 
 // indexOf로는 배열에서 특정 객체값이 존재하는지는 찾아낼 수가 없다.
 
@@ -134,3 +132,182 @@ const finded = Arr5.find(
 // 5가지 배열 변형 메서드
 // 1. filter
 // 기존 배열에서 조건을 만족하는 요소들만 필터링하여 새로운 배열로 반환
+
+let Crr1 = [
+  { name: "김도연", hobby: "꽁이랑 놀기"},
+  { name: "김소연", hobby: "꽁이랑 놀기"},
+  { name: "김서연", hobby: "꽁이랑 놀기2"},
+];
+
+const playPeople = Crr1.filter((item) => {
+  if (item.hobby === "꽁이랑 놀기")
+     return true;
+});
+
+console.log(playPeople);
+
+
+// 2. map
+// 배열의 모든 요소를 순회하면서, 각각 콜백함수를 실행하고 그 결과값들을 모아서 새로운 배열로 반환
+let Crr2 = [1, 2, 3];
+const mapResult1 = Crr2.map((item, idx, Crr2) => {
+  return item * 2;
+});
+
+let names = Crr1.map((item) => item.name);
+console.log(names);
+
+
+//3. Sor
+//
+
+
+
+
+
+
+
+
+
+
+// Quiz 1. 배열 분할 및 결합하기
+// 목표 : 배열을 반으로 나눈 다음, 순서를 바꿔 다시 결합해야 합니다.
+// 다음 요구사항에 따라 함수 splitAndCombine을 완성하세요
+// 함수 splitAndCombine은 매개변수로 제공된 배열 arr을 반으로 나눈 다음, 분할된 배열을 순서를 바꿔 결합합니다.
+
+// 요구사항:
+// 1. 반으로 나누기
+// - arr1: 0~3번 인덱스까지 분할, 결과는 [0,1,2,3]이 되어야 함
+// - arr2: 4~7번 인덱스까지 분할, 결과는 [4,5,6,7]이 되어야 함
+
+// 2. 순서를 바꿔 결합하기
+// - arr2뒤에 arr1을 결합, 결과는 [4,5,6,7,0,1,2,3]이 되어야 함
+
+// 3. 반환하기
+
+// - 결합이 완료된 배열을 반환합니다.
+
+
+function splitAndCombine(arr) {
+  const first = arr.slice(0, 4); 
+  const second = arr.slice(4, 8); 
+  return second.concat(first);
+}
+
+let arr = [0, 1, 2, 3, 4, 5, 6, 7];
+const result = splitAndCombine(arr);
+// console.log(result);
+
+
+// 출력 결과 :
+// [4,5,6,7,0,1,2,3]
+
+
+
+
+
+
+
+// Quiz 2. 클릭 이벤트 로그 처리하기
+// 목표: 배열 형태의 이벤트 로그(기록)중 "클릭" 이벤트만 특별한 형태로 출력해야 합니다.
+
+// 다음 요구사항을 만족하는 printClickEventLogs 함수를 완성하세요
+// 1. 매개변수 logs로 이벤트 로그 배열을 전달받습니다.
+// 2. 이벤트 로그들 중 type이 "click"에 해당하는 로그만 특별한 형태로 출력합니다
+// - 형태: ${이벤트아이디}: ${이벤트발생시각}
+// 3. 이벤트 발생 시각은 toLocaleString 메서드를 사용해 알아보기 쉽게 출력하세요
+
+function printClickEventLogs(logs) {
+  logs.forEach((log) => {
+    if (log.type === "click") {
+      const date = new Date(log.date);
+      console.log(`click: ${date.toLocaleString()}`);
+    }
+  });
+}
+
+
+printClickEventLogs([
+  {
+    type: "click",
+    date: "2023-01-01T12:00:00Z",
+  },
+  {
+    type: "hover",
+    date: "2023-01-01T12:10:00Z",
+  },
+  {
+    type: "scroll",
+    date: "2023-01-01T12:15:00Z",
+  },
+  {
+    type: "click",
+    date: "2023-01-01T12:20:00Z",
+  },
+]);
+
+// 출력 결과
+// click :: 2023. 1. 1. 오후 9:00:00
+// click :: 2023. 1. 1. 오후 9:20:00
+
+
+
+
+function getDiscountedMenus(menus) {
+  return menus.map((menu) => {
+    return {
+      ...menu,
+      discountedPrice: menu.price - 500,
+    };
+  });
+}
+const discountedMenus = getDiscountedMenus([
+  { itemId: 1, name: "아메리카노", price: 3000 },
+  { itemId: 2, name: "라떼", price: 3500 },
+  { itemId: 3, name: "초콜릿 케이크", price: 5000 },
+  { itemId: 4, name: "크로와상", price: 2800 },
+]);
+
+//  console.log(discountedMenus);
+// 출력 결과 :
+// { itemId: 1, name: '아메리카노', price: 3000, discountedPrice: 2500 },
+// { itemId: 2, name: '라떼', price: 3500, discountedPrice: 3000 },
+// { itemId: 3, name: '초콜릿 케이크', price: 5000, discountedPrice: 4500 },
+// { itemId: 4, name: '크로와상', price: 2800, discountedPrice: 2300 }
+
+
+
+
+
+
+function getSortedBooks(books) {
+  return books.sort((a, b) => {
+    return b.published.getTime() - a.published.getTime();
+  });
+}
+
+const sortedBooks = getSortedBooks([
+  {
+    title: "한입 리액트",
+    published: new Date("2023. 04. 06"),
+  },
+  {
+    title: "웹 프론트엔드 첫 걸음",
+    published: new Date("2024. 04. 30"),
+  },
+  {
+    title: "이펙티브 타입스크립트",
+    published: new Date("2021. 06. 27"),
+  },
+  {
+    title: "클린코드",
+    published: new Date("2013. 12. 24"),
+  },
+]);
+
+console.log(sortedBooks);
+// 출력 결과 :
+// { title: '웹 프론트엔드 첫 걸음', published: 2024-04-29T15:00:00.000Z},
+// { title: '한입 리액트', published: 2023-04-05T15:00:00.000Z },
+// { title: '이펙티브 타입스크립트', published: 2021-06-26T15:00:00.000Z},
+// { title: '클린코드', published: 2013-12-23T15:00:00.000Z }
