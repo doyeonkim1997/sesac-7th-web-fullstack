@@ -25,6 +25,11 @@ function TodoPage({ currentUser, onLogout }) {
     return null;
   }
 
+  const handleAddTodo = (newTodo) => {
+    setTodos((prevTodos) => [...prevTodos, newTodo]);
+  };
+
+
   return (
     <div className="bg-light">
       <Header currentUser={currentUser} onLogout={handleLogout} />
@@ -45,6 +50,7 @@ function TodoPage({ currentUser, onLogout }) {
         <showTodoForm
           show={showTodoForm}
           onClose={() => setShowTodoForm(false)}
+          onAddTodo={handleAddTodo}
       </div>
     </div>
   );

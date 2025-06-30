@@ -1,10 +1,12 @@
 import React from 'react'
 import { todos } from '../../utils/data'
 
-const TodoForm = ({ show, onClose }) => {
+const TodoForm = ({ show, onClose, AddTodo }) => {
   const [title, setTitle] = React.useState('')
   const [description, setDescription] = React.useState('')
   const [isCompleted, setIsCompleted] = React.useState(false)
+
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,10 +17,24 @@ const TodoForm = ({ show, onClose }) => {
 
     const newTodo = {
       id: todos.reduce((maxId, todo) => Math.max(maxId, todo.id), 0),
-    }
-
+      title,
+      description,
+      isCompleted
+    };
+    onAddTodo(newTodo);
+    handleClose();
 
   }
+  const handleClose = () => {
+    setTitle('')
+    setDescription('')
+    setIsCompleted(false)
+    onClose()
+  }
+  if (!show) {
+    return null;
+  }
+
 
   return (
     <>
