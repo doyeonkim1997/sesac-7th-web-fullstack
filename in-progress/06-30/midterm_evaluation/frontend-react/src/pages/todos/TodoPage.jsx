@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Header from '../../components/ui/Header.jsx';
 import { useNavigate } from 'react-router-dom';
 import { todos as initialTodos } from '../../utils/data.js';
+import TodoList from '../../components/todo/TodoList.jsx';
+import Todofilter from '../../components/todo/TodoFilter.jsx';
 
 function TodoPage({ currentUser, onLogout }) {
   const navigate = useNavigate();
   const [todos, setTodos] = useState([]);
+  const [currentFilter, setCurrentFilter] = useState('all');
+  const [showTodoForm, setShowTodoForm] = useState(false);
 
   useEffect(() => {
     setTodos(initialTodos);
@@ -38,6 +42,9 @@ function TodoPage({ currentUser, onLogout }) {
         </div>
 
         <TodoList todos={todos} currentFilter={currentFilter} />
+        <showTodoForm
+          show={showTodoForm}
+          onClose={() => setShowTodoForm(false)}
       </div>
     </div>
   );
