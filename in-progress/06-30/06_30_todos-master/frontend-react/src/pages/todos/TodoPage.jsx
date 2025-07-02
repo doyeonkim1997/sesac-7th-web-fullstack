@@ -1,66 +1,79 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useNavigate } from 'react-router-dom';
-import Header from '../../components/ui/Header'
-import { todos as initialTodos } from '../../utils/data';
+import Header from '../../components/ui/Header';
 import TodoList from '../../components/todo/TodoList';
-import TodoFilter from '../../components/todo/TodoFilter';
+
 import TodoForm from '../../components/todo/TodoForm';
+import ConfirmDialog from '../../components/ui/ConfirmDialog';
+import TodoActions from '../../components/ui/TodoActions';
+import TodoStats from '../../components/ui/TodoStats';
 
-function TodoPage({ currentUser, onLogout }) {
+import { useTodo } from '../../context/TodoContext';
+import { useAuth } from '../../context/AuthContext';
+
+function TodoPage() {
+
   const navigate = useNavigate();
-  const [todos, setTodos] = useState([]);
-  const [currentFilter, setCurrentFilter] = useState('all');
-  const [showTodoForm, setShowTodoForm] = useState(false);
+  const { currentUser, logout } = useAuth();
 
+  const {
+    todos,
+    currentFilter,
+    showTodoForm,
+    showConfirmDialog,
 
-  useEffect(() => {
-    setTodos(initialTodos);
-  }, [])
+    handleToggleComplete,
+    handleDeleteTodo,
+    handleConfirmDelete,
+    handleCancelDelete,
+    handleAddTodo,
+    handleFilterChange,
+    openTodoForm,
+    closeTodoForm } = useTodo();
 
 
   const handleLogout = () => {
-    onLogout();
+    logout()
     navigate('/login');
   };
-
   if (!currentUser) {
     navigate('/login');
     return null;
   }
-
-  const handleAddTodo = (newTodo) => {
-    setTodos(prevTodos => [...prevTodos, newTodo])
-  }
-
   return (
-    <div className="b</div>g-light ">
+
+    <div className="bg-light ">
       <Header currentUser={currentUser} onLogout={handleLogout} />
       <div className="container mt-4">
         <div className="d-flex justify-content-between align-items-center mb-4">
-          <div>
-            <h2>할 일 목록</h2>
-
-          </div>
-          <div className="d-flex gap-2">
-            <button
-              type="button"
-              className="btn btn-success"
-              onClick={() => setShowTodoForm(true)}
-            >
-              할 일 추가
-            </button>
-
-            {<TodoFilter
-              currentFilter={currentFilter}
-            // onFilterChange={handleFilterChange}
-            />}
-          </div>
+          <TodoStats
+            todos={todos} />
+          <TodoActions
+            onAddClick={openTodoForm}
+            currentFilter={currentFilter}
+            onFilterChange={handleFilterChange}
+          />
         </div>
-        <TodoList todos={todos} currentFilter={currentFilter} />
+        <TodoList
+          todos={todos}
+          currentFilter={currentFilter}
+          onToggleComplete={handleToggleComplete}
+          onDeleteTodo={handleDeleteTodo}
+        />
+
         <TodoForm
           show={showTodoForm}
-          onClose={() => setShowTodoForm(false)}
+          onClose={closeTodoForm}
           onAddTodo={handleAddTodo}
+        />
+
+        <ConfirmDialog
+          show={showConfirmDialog}
+          title="할 일 삭제"
+          message="정말로 이 할 일을 삭제하시겠습니까?"
+          confirmText="삭제"
+          onConfirm={handleConfirmDelete}
+          onCancel={handleCancelDelete}
         />
       </div>
     </div>

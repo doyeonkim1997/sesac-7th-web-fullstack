@@ -1,41 +1,54 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { users } from '../../utils/data'
-function LoginPage({ currentUser, onLogin }) {
-  const navigate = useNavigate();
+import { initialUsers } from '../../utils/data'
+import { useAuth } from '../../context/AuthContext';
+import { userAPI } from '../../utils/data';
 
+function LoginPage() {
+
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+
+  const [loading, setLoading] = useState(false);
+
+
+  const { currentUser, login } = useAuth();
+
+  useEffect(() => {
+    console.log("!")
+
+  }, [])
 
   useEffect(() => {
     if (currentUser) {
       navigate('/todo')
     }
+
   }, [currentUser, navigate])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    // 로그인 검사
-    // 입력 값이 없는 경우
     if (!email || !password) {
       setErrorMessage('모든 항목을 입력해주세요.');
+      setLoading(false);
       return;
     }
 
-    const foundUser = users.find(user =>
-      user.email === email &&
-      user.password === password
-    )
-
-    if (foundUser) {
-      onLogin({ email: foundUser.email })
-      navigate('/todo')
-    } else {
+    try {
+      const result = await userAPI.login(email, password)
+      if (result.success) {
+        login({ email: result.user.email })
+        navigate('/todo')
+      }
+    } catch (e) {
       setErrorMessage('잘못된 이메일 또는 비밀번호입니다.');
+      setLoading(false);
       return;
-      // 로그인 실패!
     }
   }
 
@@ -58,6 +71,7 @@ function LoginPage({ currentUser, onLogin }) {
               placeholder="name@example.com"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              disabled={loading}
             ></input>
           </div>
           <div class="mb-3">
@@ -68,14 +82,34 @@ function LoginPage({ currentUser, onLogin }) {
               id="password"
               placeholder="비밀번호"
               value={password}
+              disabled={loading}
+
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <p id="errorMessage" class="text-danger text-center"></p>
 
-          <div class="d-grid">
-            <button type="submit" class="btn btn-primary">로그인</button>
+          <div className="d-grid">
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <span
+                    className="spinner-border spinner-border-sm me-2"
+                    role="status"
+                    aria-hidden="true"
+                  ></span>
+                  로그인 중...
+                </>
+              ) : (
+                "로그인"
+              )}
+            </button>
           </div>
+
         </form>
 
         <div className="mt-4 pt-3 border-top">
