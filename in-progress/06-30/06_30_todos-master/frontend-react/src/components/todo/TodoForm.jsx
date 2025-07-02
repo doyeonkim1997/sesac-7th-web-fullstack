@@ -1,43 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { todos } from '../../utils/data'
 
-const TodoForm = ({ show, onClose, AddTodo }) => {
-  const [title, setTitle] = React.useState('')
-  const [description, setDescription] = React.useState('')
-  const [isCompleted, setIsCompleted] = React.useState(false)
-
+const TodoForm = ({ show, onClose, onAddTodo }) => {
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [isCompleted, setIsCompleted] = useState(false)
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!title.trim()) {
-      alert('제목을 입력해주세요.')
+      alert("제목 입력해주세요")
       return;
     }
 
     const newTodo = {
-      id: todos.reduce((maxId, todo) => Math.max(maxId, todo.id), 0),
+      id: todos.reduce((maxId, todos) => Math.max(maxId, todos.id) + 1, 0),
       title,
       description,
       isCompleted
-    };
-    onAddTodo(newTodo);
-    handleClose();
-
+    }
+    onAddTodo(newTodo)
+    handleClose()
   }
   const handleClose = () => {
-    setTitle('')
-    setDescription('')
-    setIsCompleted(false)
+    setTitle('');
+    setDescription('');
+    setIsCompleted(false);
     onClose()
   }
-  if (!show) {
-    return null;
-  }
 
-
+  if (!show) return null;
   return (
     <>
+
       <div className="modal fade show" style={{ display: 'block' }} tabIndex="-1" aria-labelledby="todoModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">

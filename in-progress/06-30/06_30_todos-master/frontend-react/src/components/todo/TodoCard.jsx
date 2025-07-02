@@ -1,11 +1,13 @@
 import React from 'react';
 
-
 const TodoCard = ({ todo }) => {
   return (
     <div className={`card h-100 shadow-sm ${todo.isCompleted ? 'bg-light' : ''}`} >
       <div className='card-body d-flex flex-column'>
-        <h5 className={`card-title ${todo.isCompleted ? 'bg-success' : 'bg-warning text-dark'} `} />
+        <h5 className={`card-title ${todo.isCompleted ?
+          'text-decoration-line-through text-muted' : ''} `}>
+          {todo.title}
+        </h5>
         {
           todo.description && (
             <p className='card-text text-muted small flex-grow-1'>{todo.description} </p>
@@ -37,9 +39,7 @@ const TodoCard = ({ todo }) => {
         </div>
       </div>
     </div>
+  );
+};
 
-
-
-
-
-
+export default TodoCard;

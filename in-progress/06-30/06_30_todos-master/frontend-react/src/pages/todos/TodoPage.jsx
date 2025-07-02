@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import Header from '../../components/ui/Header.jsx';
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { todos as initialTodos } from '../../utils/data.js';
-import TodoList from '../../components/todo/TodoList.jsx';
-import Todofilter from '../../components/todo/TodoFilter.jsx';
+import Header from '../../components/ui/Header'
+import { todos as initialTodos } from '../../utils/data';
+import TodoList from '../../components/todo/TodoList';
+import TodoFilter from '../../components/todo/TodoFilter';
+import TodoForm from '../../components/todo/TodoForm';
 
 function TodoPage({ currentUser, onLogout }) {
   const navigate = useNavigate();
@@ -11,9 +12,11 @@ function TodoPage({ currentUser, onLogout }) {
   const [currentFilter, setCurrentFilter] = useState('all');
   const [showTodoForm, setShowTodoForm] = useState(false);
 
+
   useEffect(() => {
     setTodos(initialTodos);
-  }, [currentUser]);
+  }, [])
+
 
   const handleLogout = () => {
     onLogout();
@@ -26,34 +29,42 @@ function TodoPage({ currentUser, onLogout }) {
   }
 
   const handleAddTodo = (newTodo) => {
-    setTodos((prevTodos) => [...prevTodos, newTodo]);
-  };
-
+    setTodos(prevTodos => [...prevTodos, newTodo])
+  }
 
   return (
-    <div className="bg-light">
+    <div className="b</div>g-light ">
       <Header currentUser={currentUser} onLogout={handleLogout} />
       <div className="container mt-4">
         <div className="d-flex justify-content-between align-items-center mb-4">
           <div>
             <h2>할 일 목록</h2>
-            <p className="text-muted mb-0">
-              {/* 총 {todos.length}개 중 {todos.filter(todo => todo.isCompleted).length}개 완료 */}
-            </p>
+
           </div>
           <div className="d-flex gap-2">
-            {/* 추가 버튼이나 필터 버튼 여기에 */}
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={() => setShowTodoForm(true)}
+            >
+              할 일 추가
+            </button>
+
+            {<TodoFilter
+              currentFilter={currentFilter}
+            // onFilterChange={handleFilterChange}
+            />}
           </div>
         </div>
-
         <TodoList todos={todos} currentFilter={currentFilter} />
-        <showTodoForm
+        <TodoForm
           show={showTodoForm}
           onClose={() => setShowTodoForm(false)}
           onAddTodo={handleAddTodo}
+        />
       </div>
     </div>
-  );
+  )
 }
 
-export default TodoPage;
+export default TodoPage
