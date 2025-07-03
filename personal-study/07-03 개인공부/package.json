@@ -1,0 +1,17 @@
+{
+  "name": "0703",
+  "version": "1.0.0",
+  "main": "07-03 개인공부.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "chance": "^1.1.13",
+    "randomcolor": "^0.6.2"
+  }
+}
