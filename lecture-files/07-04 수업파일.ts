@@ -6,6 +6,11 @@ let message: string = `Hello, ${username}!`;
 
 // 자체적으로 입력을 안해도 이건 스트링이다 하고 // 타입스크립트가 인식한다.
 
+// 타입 추론
+let userId = 123; // 타입스크립트가 자동으로 number 타입으로 추론
+userId = 456; // 여전히 number 타입
+let userName = "Bob"; // 타입스크립트가 자동으로 string 타입으로 추론
+userName = "Alice"; // 여전히 string 타입
 
 // number 타입
 let age: number = 30;
@@ -52,3 +57,6 @@ let user: object = {
     age: 30,
     isActive: true
 };
+
+// 배열
+let fruit: string[] = ["apple", "banana", "orange"]; // 문자열 배열, 스트링만 들어갈 수 있다.
