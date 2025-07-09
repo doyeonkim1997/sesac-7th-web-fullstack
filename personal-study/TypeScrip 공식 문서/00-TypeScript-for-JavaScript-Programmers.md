@@ -21,8 +21,9 @@ TypeScript는 JavaScript를 기반으로 한 언어다.
 TypeScript는 JavaScript를 잘 알고 있어서, 변수를 선언할 때 값을 보고 타입을 자동으로 정한다.
 
 ```ts
+// 타입 추론 예시
 let helloWorld = "Hello World";
-// TypeScript는 이 변수를 string 타입으로 인식한다.
+// TypeScript는 초기값 "Hello World"를 보고 자동으로 string 타입으로 추론합니다
 ```
 
 그래서 `string`이라고 직접 쓰지 않아도 된다.
@@ -54,18 +55,21 @@ const user = {
 이런 **모양**을 미리 정해 놓는 걸 **인터페이스(interface)** 라고 한다.
 
 ```ts
+// 인터페이스를 사용한 객체 타입 정의
 interface User {
-  name: string;
-  id: number;
+  name: string;  // name은 문자열만 허용
+  id: number;    // id는 숫자만 허용
 }
 
+// 인터페이스를 타입으로 사용
 const user2: User = {
-  name: "Hayes",
-  id: 0,
+  name: "Hayes",  // ✅ OK: string 타입 할당
+  id: 0,         // ✅ OK: number 타입 할당
 };
 
+// 인터페이스와 맞지 않는 객체 구조
 const user3: User = {
-  username: "Hayes", // 에러: 'name' 속성이 빠짐
+  username: "Hayes",  // ❌ Error: 'name' 속성이 필요한데 'username'이 사용됨
   id: 0,
 };
 ```
@@ -75,16 +79,20 @@ const user3: User = {
 ## 3. 클래스에 타입 적용하기 💻
 
 ```ts
+// 클래스에 타입 시스템 적용
 class UserAccount {
+  // 클래스 프로퍼티의 타입을 명시적으로 선언
   name: string;
   id: number;
 
+  // 생성자의 매개변수에도 타입 지정
   constructor(name: string, id: number) {
     this.name = name;
     this.id = id;
   }
 }
 
+// User 인터페이스를 타입으로 사용하면서 UserAccount 인스턴스 생성
 const user4: User = new UserAccount("Murphy", 1);
 ```
 
@@ -133,25 +141,21 @@ function getAdminUser(): User {
 ### Unions (여러 타입 중 하나)
 
 ```ts
-type MyBool = true | false;
+// 유니언 타입 예시
+type WindowStates = "open" | "closed" | "minimized";  // 세 가지 문자열 중 하나만 허용
+type PositiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;  // 다섯 개의 숫자 중 하나만 허용
 
-type WindowStates = "open" | "closed" | "minimized";
-type LockStates = "locked" | "unlocked";
-type PositiveOddNumbersUnderTen = 1 | 3 | 5 | 7 | 9;
-```
-
-문자열이나 문자열 배열을 받을 수 있는 함수:
-
-```ts
-function getLength(obj: string | string[]) {
-  return obj.length;
+// 유니언 타입을 활용한 함수 예시
+function getLength(obj: string | string[]) {  // 문자열 또는 문자열 배열을 받을 수 있음
+  return obj.length;  // string과 string[] 모두 length 속성을 가지고 있어서 가능
 }
 
 function wrapInArray(obj: string | string[]) {
+  // typeof로 타입 가드를 사용해 런타임에 타입 확인
   if (typeof obj === "string") {
-    return [obj];
+    return [obj];  // 문자열이면 배열로 감싸서 반환
   }
-  return obj;
+  return obj;  // 이미 배열이면 그대로 반환
 }
 ```
 
@@ -168,12 +172,13 @@ function wrapInArray(obj: string | string[]) {
 ```ts
 // 제너릭 함수 예시
 function firstElement<T>(arr: T[]): T | undefined {
-    return arr[0];
+    // T는 타입 변수로, 어떤 타입이든 될 수 있음
+    return arr[0];  // 배열의 첫 번째 요소를 반환하거나 undefined
 }
 
-// 사용 예시
-const numbers = firstElement([1, 2, 3]);  // number 타입
-const strings = firstElement(["a", "b"]); // string 타입
+// 제너릭 함수 사용 예시
+const numbers = firstElement([1, 2, 3]);  // T는 number로 결정됨
+const strings = firstElement(["a", "b"]); // T는 string으로 결정됨
 ```
 
 ---
@@ -182,12 +187,13 @@ const strings = firstElement(["a", "b"]); // string 타입
 
 > 💡 **덕 타이핑(Duck Typing)이란?**
 > "만약 어떤 새가 오리처럼 걷고, 오리처럼 소리내고, 오리처럼 헤엄치면, 그건 오리일 것이다"라는 
-> 개념에서 유래했습니다. TypeScript에서는 객체의 실제 타입보다는 객체가 가진 속성과 메서드가 
+> 개념에서 유래했다. TypeScript에서는 객체의 실제 타입보다는 객체가 가진 속성과 메서드가 
 > 중요하다.
 
 TypeScript는 **모양(구조)이 같으면 같은 타입**으로 간주한다. 이를 "덕 타이핑(duck typing)"이라고도 부른다.
 
 ```ts
+// 구조적 타이핑 예시
 interface Point {
   x: number;
   y: number;
@@ -197,17 +203,17 @@ function logPoint(p: Point) {
   console.log(`${p.x}, ${p.y}`);
 }
 
+// Point 인터페이스와 정확히 일치하는 객체
 const point = { x: 12, y: 26 };
-logPoint(point); // 출력: 12, 26
+logPoint(point);  // ✅ OK: 필요한 속성이 모두 있음
 
-const point3 = { x: 12, y: 26, z: 89 };
-logPoint(point3); // 출력: 12, 26
+// 추가 속성이 있는 객체도 사용 가능
+const point3 = { x: 12, y: 26, z: 89 };  // z가 추가되어 있지만 OK
+logPoint(point3); // ✅ OK: 필요한 속성이 모두 있음
 
+// 다른 용도로 만든 객체여도 필요한 속성만 있으면 사용 가능
 const rect = { x: 33, y: 3, width: 30, height: 80 };
-logPoint(rect); // 출력: 33, 3
-
-const color = { hex: "#187ABF" };
-// logPoint(color); // 에러: x와 y가 없음
+logPoint(rect);  // ✅ OK: x와 y가 있으므로 사용 가능
 ```
 
 클래스도 동일하게 적용된다.
