@@ -1,12 +1,29 @@
-import { useState } from "react";
+import { useState, useRef} from "react";
 
 const OrderEditor = () => {
-  const [menu, setMenu] = useState("족발");
-  const [address, setAddress] = useState("");
-  const [request, setRequest] = useState("");
+  const [form, setState] = useState({
+    menu: "", // 메뉴
+    address: "", // 주소
+    request: "", // 요청 사항
+  });
+  const addressRef = useRef();
+
+
+
+  const onChangeState = (event) => {
+    const { name, value } = event.target;
+    setState((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
 
   const onSubmit = () => {
-    alert(`메뉴: ${menu}\n주소: ${address}\n요청사항: ${request}`);
+    if (!form.address) {
+      addressRef.current.focus();
+      return;
+    }
+    alert(`메뉴: ${form.menu}\n주소: ${form.address}\n요청사항: ${form.request}`);
   };
 
   return (
